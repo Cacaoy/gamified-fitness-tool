@@ -330,6 +330,18 @@ function bindActions() {
       showToast(`${node.textContent}日挑战：完成当日轻任务即可点亮`);
     });
   });
+
+  document.addEventListener("click", (event) => {
+    const toastButton = event.target.closest("[data-toast]");
+    if (!toastButton) return;
+
+    if (toastButton.classList.contains("state-chip")) {
+      document.querySelectorAll(".state-chip").forEach((button) => button.classList.remove("active"));
+      toastButton.classList.add("active");
+    }
+
+    showToast(toastButton.dataset.toast);
+  });
 }
 
 function bindTheme() {

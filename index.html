@@ -9,7 +9,7 @@
       content="面向大学生的游戏化运动激励工具原型，通过任务、组队、成就和校园奖励提升运动频率。"
     />
     <link rel="stylesheet" href="./styles.css" />
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="./assets/vendor/lucide.min.js" defer></script>
     <script src="./script.js" defer></script>
   </head>
   <body>
@@ -24,31 +24,35 @@
         </div>
 
         <nav class="nav-list">
-          <button class="nav-button active" type="button" data-view="dashboard" title="运动仪表盘">
+          <button class="nav-button active" type="button" data-view="dashboard" title="今日">
             <i data-lucide="layout-dashboard"></i>
-            <span>运动仪表盘</span>
+            <span>今日</span>
           </button>
-          <button class="nav-button" type="button" data-view="blueprint" title="产品结构">
-            <i data-lucide="workflow"></i>
-            <span>产品结构</span>
+          <button class="nav-button" type="button" data-view="plan" title="计划">
+            <i data-lucide="calendar-days"></i>
+            <span>计划</span>
           </button>
-          <button class="nav-button" type="button" data-view="growth" title="运营评估">
-            <i data-lucide="chart-no-axes-combined"></i>
-            <span>运营评估</span>
+          <button class="nav-button" type="button" data-view="squad" title="战队">
+            <i data-lucide="users-round"></i>
+            <span>战队</span>
+          </button>
+          <button class="nav-button" type="button" data-view="rewards" title="奖励">
+            <i data-lucide="gift"></i>
+            <span>奖励</span>
           </button>
         </nav>
 
         <div class="sidebar-footer">
-          <span>核心目标</span>
-          <strong>把“坚持运动”变成每天都想参与的校园协作游戏。</strong>
+          <span>本周目标</span>
+          <strong>完成 4 次轻运动，保住寝室战队前三。</strong>
         </div>
       </aside>
 
       <main class="workspace">
         <header class="topbar">
           <div>
-            <span class="eyebrow">大学生运动激励工具</span>
-            <h1>社交组队 + 成就反馈 + 校园奖励</h1>
+            <span class="eyebrow">燃动校园</span>
+            <h1>每日轻运动，点亮寝室战队</h1>
           </div>
           <div class="topbar-actions">
             <button class="icon-button" id="themeToggle" type="button" title="切换深浅模式">
@@ -61,14 +65,32 @@
           </div>
         </header>
 
+        <section class="quick-strip" aria-label="今日提醒">
+          <div>
+            <span>20:30 操场轻跑</span>
+            <strong>18 分钟即可打卡</strong>
+            <p>已匹配 2 位同路队友</p>
+          </div>
+          <div>
+            <span>考试周低压模式</span>
+            <strong>睡前拉伸也算连续</strong>
+            <p>中断不清零，先回到最小任务</p>
+          </div>
+          <div>
+            <span>轻食券可兑换</span>
+            <strong>还差 80 能量币</strong>
+            <p>完成组队任务最快</p>
+          </div>
+        </section>
+
         <section class="view active" id="dashboard" aria-labelledby="dashboardTitle">
           <div class="hero-band">
             <img class="hero-image" src="./assets/campus-workout.png" alt="校园操场夜跑与同学运动场景" />
             <div class="hero-overlay"></div>
             <div class="hero-content">
-              <span class="status-pill">今晚 20:30 · 操场战队局</span>
-              <h2 id="dashboardTitle">今天 28 分钟，替队友点亮一格</h2>
-              <p>把跑步、力量、拉伸拆成轻任务，完成后转化为个人经验、战队能量和可兑换奖励。</p>
+              <span class="status-pill">今晚 20:30 · 操场轻跑</span>
+              <h2 id="dashboardTitle">今晚轻跑 18 分钟，点亮寝室战队</h2>
+              <p>任务会按课表空档和体力自动变轻，运动记录同步到寝室战队。</p>
             </div>
             <div class="hero-stats" aria-label="本周状态">
               <div>
@@ -189,217 +211,304 @@
           </div>
         </section>
 
-        <section class="view" id="blueprint" aria-labelledby="blueprintTitle">
+        <section class="view" id="plan" aria-labelledby="planTitle">
           <div class="section-band">
-            <span class="eyebrow">产品定位</span>
-            <h2 id="blueprintTitle">面向大学生日常运动的轻游戏化激励平台</h2>
-            <p>
-              以“低门槛运动任务”为入口，把个人计划、同伴监督、战队协作和成就收藏连接起来，
-              让用户在碎片时间里获得可见反馈，并通过集体目标减少放弃成本。
-            </p>
+            <span class="eyebrow">计划</span>
+            <h2 id="planTitle">这周按课表自动排好的运动表</h2>
+            <p>时间少就切轻量版，状态好就加一组，今天的选择会同步到任务、连续记录和战队能量。</p>
           </div>
 
-          <div class="insight-grid">
-            <article class="panel insight-card">
-              <i data-lucide="battery-low"></i>
-              <h3>动力不稳定</h3>
-              <p>课程、社团和考试挤压时间，长计划一旦中断容易直接放弃。</p>
-            </article>
-            <article class="panel insight-card">
-              <i data-lucide="message-circle-off"></i>
-              <h3>缺少即时反馈</h3>
-              <p>单次运动收益不明显，用户需要更快看到进步、认可和奖励。</p>
-            </article>
-            <article class="panel insight-card">
-              <i data-lucide="users-round"></i>
-              <h3>同伴难以组织</h3>
-              <p>约运动成本高，寝室和班级关系没有被转化为持续激励。</p>
-            </article>
-          </div>
+          <div class="feature-grid">
+            <section class="panel schedule-panel">
+              <div class="panel-heading compact">
+                <div>
+                  <span class="section-kicker">本周训练表</span>
+                  <h3>4 次轻运动 + 1 次组队局</h3>
+                </div>
+                <span class="tag">课表已同步</span>
+              </div>
+              <div class="week-planner">
+                <article class="day-card done">
+                  <span>周一 · 21:40</span>
+                  <strong>睡前拉伸</strong>
+                  <p>8 分钟，已完成</p>
+                </article>
+                <article class="day-card active">
+                  <span>今晚 · 20:30</span>
+                  <strong>操场轻跑</strong>
+                  <p>18 分钟，已约 2 人</p>
+                </article>
+                <article class="day-card">
+                  <span>周五 · 17:20</span>
+                  <strong>核心力量</strong>
+                  <p>3 组训练，预计 16 分钟</p>
+                </article>
+                <article class="day-card">
+                  <span>周日 · 10:00</span>
+                  <strong>寝室接力</strong>
+                  <p>累计 10 公里，缺 1 人</p>
+                </article>
+              </div>
+            </section>
 
-          <div class="flow-strip" aria-label="核心产品闭环">
-            <div>
-              <span>01</span>
-              <strong>设定目标</strong>
-              <p>体测、减压、塑形、作息恢复</p>
-            </div>
-            <div>
-              <span>02</span>
-              <strong>生成任务</strong>
-              <p>10 到 30 分钟轻量运动包</p>
-            </div>
-            <div>
-              <span>03</span>
-              <strong>可信打卡</strong>
-              <p>步数、GPS、设备数据组合验证</p>
-            </div>
-            <div>
-              <span>04</span>
-              <strong>社交助推</strong>
-              <p>寝室战队、好友补位、班级挑战</p>
-            </div>
-            <div>
-              <span>05</span>
-              <strong>成就兑换</strong>
-              <p>徽章、称号、校园权益和复盘</p>
-            </div>
-          </div>
+            <section class="panel readiness-panel">
+              <div class="panel-heading compact">
+                <div>
+                  <span class="section-kicker">今日状态</span>
+                  <h3>自动调节强度</h3>
+                </div>
+              </div>
+              <div class="state-picker" aria-label="今日状态选择">
+                <button class="state-chip active" type="button" data-toast="已切换到低压训练，今日任务变为 18 分钟轻跑">有点累</button>
+                <button class="state-chip" type="button" data-toast="已切换到标准训练，今日任务变为 25 分钟跑走结合">正常</button>
+                <button class="state-chip" type="button" data-toast="已切换到冲刺训练，今日任务增加 1 组核心力量">想冲刺</button>
+              </div>
+              <div class="readiness-score">
+                <span>恢复指数</span>
+                <strong>62</strong>
+                <p>昨晚睡眠偏短，建议保连续，不追求高强度。</p>
+              </div>
+            </section>
 
-          <div class="module-grid">
-            <section class="panel module-panel">
-              <div class="module-icon"><i data-lucide="clipboard-list"></i></div>
-              <h3>智能计划</h3>
-              <p>根据课表空档、运动基础和体测目标，自动生成“最低可完成版本”。</p>
-              <ul>
-                <li>新手保护：前 7 天只推低强度任务</li>
-                <li>考试周模式：拉伸、散步、睡前放松优先</li>
-                <li>失败修复：中断后回到较小任务，不清零成就</li>
-              </ul>
+            <section class="panel campus-map-panel">
+              <div class="panel-heading compact">
+                <div>
+                  <span class="section-kicker">校园路线</span>
+                  <h3>今天推荐</h3>
+                </div>
+              </div>
+              <div class="route-cards">
+                <article>
+                  <i data-lucide="route"></i>
+                  <strong>操场 6 圈</strong>
+                  <span>约 2.4 公里 · 灯光好 · 人多安全</span>
+                </article>
+                <article>
+                  <i data-lucide="trees"></i>
+                  <strong>图书馆散步线</strong>
+                  <span>约 1.1 公里 · 适合考试周</span>
+                </article>
+                <article>
+                  <i data-lucide="building-2"></i>
+                  <strong>宿舍楼下力量点</strong>
+                  <span>无需器械 · 12 分钟完成</span>
+                </article>
+              </div>
             </section>
-            <section class="panel module-panel">
-              <div class="module-icon accent"><i data-lucide="swords"></i></div>
-              <h3>校园挑战</h3>
-              <p>把操场、图书馆、食堂等校园地点转化为可解锁挑战地图。</p>
-              <ul>
-                <li>个人挑战：连续夜跑、晨间拉伸、力量入门</li>
-                <li>战队挑战：寝室累计公里数、班级积分赛</li>
-                <li>限时活动：体测月、社团联赛、毕业季路线</li>
-              </ul>
-            </section>
-            <section class="panel module-panel">
-              <div class="module-icon warm"><i data-lucide="medal"></i></div>
-              <h3>成就收藏</h3>
-              <p>把抽象的健康收益变成可展示、可收集、可分享的成长记录。</p>
-              <ul>
-                <li>徽章：首跑、破纪录、稳定打卡、队友助攻</li>
-                <li>称号：夜跑领航员、复盘达人、寝室 MVP</li>
-                <li>展示：个人主页、战队墙、活动榜单</li>
-              </ul>
-            </section>
-            <section class="panel module-panel">
-              <div class="module-icon cool"><i data-lucide="shield-check"></i></div>
-              <h3>信任与隐私</h3>
-              <p>强调可信记录和可控展示，避免过度社交压力。</p>
-              <ul>
-                <li>好友仅默认看到摘要，不展示精确路线</li>
-                <li>打卡异常时提示复核，不直接公开惩罚</li>
-                <li>支持低调模式，只参与战队贡献不进公开榜</li>
-              </ul>
+
+            <section class="panel guard-panel">
+              <div class="panel-heading compact">
+                <div>
+                  <span class="section-kicker">连续保护</span>
+                  <h3>中断也能接回来</h3>
+                </div>
+              </div>
+              <div class="guard-list">
+                <div>
+                  <i data-lucide="rotate-ccw"></i>
+                  <span>补签券 1 张</span>
+                  <strong>可修复 1 次漏打卡</strong>
+                </div>
+                <div>
+                  <i data-lucide="umbrella"></i>
+                  <span>雨天替代</span>
+                  <strong>室内拉伸自动替换跑步</strong>
+                </div>
+                <div>
+                  <i data-lucide="book-open"></i>
+                  <span>考试周</span>
+                  <strong>任务下调 40%，不影响连胜</strong>
+                </div>
+              </div>
             </section>
           </div>
         </section>
 
-        <section class="view" id="growth" aria-labelledby="growthTitle">
-          <div class="section-band growth-band">
-            <span class="eyebrow">运营与评估</span>
-            <h2 id="growthTitle">用校园关系链提高运动频率，用数据复盘验证留存</h2>
-            <p>
-              设计重点不是让用户一次练很猛，而是让更多同学每周多运动 2 到 3 次，并愿意持续回到战队。
-            </p>
+        <section class="view" id="squad" aria-labelledby="squadTitle">
+          <div class="section-band">
+            <span class="eyebrow">战队</span>
+            <h2 id="squadTitle">我们宿舍都能跑</h2>
+            <p>小队内只显示摘要状态。有人状态低时可以补位，有人完成任务时全队能量都会涨。</p>
           </div>
 
-          <div class="growth-layout">
-            <section class="panel calendar-panel">
+          <div class="squad-layout">
+            <section class="panel squad-room">
               <div class="panel-heading compact">
                 <div>
-                  <span class="section-kicker">活动节奏</span>
-                  <h3>四周冷启动</h3>
+                  <span class="section-kicker">队友状态</span>
+                  <h3>今晚谁能一起</h3>
                 </div>
+                <button class="primary-action slim" type="button" data-toast="已生成寝室战队邀请卡">
+                  <i data-lucide="user-plus"></i>
+                  <span>邀请</span>
+                </button>
               </div>
-              <div class="timeline">
-                <div>
-                  <span>第 1 周</span>
-                  <strong>寝室建队</strong>
-                  <p>辅导员、社团、体育课入口引导组队。</p>
-                </div>
-                <div>
-                  <span>第 2 周</span>
-                  <strong>操场地图</strong>
-                  <p>推出低门槛七日地图，降低首次参与难度。</p>
-                </div>
-                <div>
-                  <span>第 3 周</span>
-                  <strong>班级联赛</strong>
-                  <p>按人均活跃天数排名，避免大队伍天然优势。</p>
-                </div>
-                <div>
-                  <span>第 4 周</span>
-                  <strong>奖励复盘</strong>
-                  <p>发放校园权益，展示个人变化和战队贡献。</p>
-                </div>
+              <div class="member-list">
+                <article>
+                  <span class="avatar">你</span>
+                  <div>
+                    <strong>我</strong>
+                    <p>20:30 操场 · 已预约</p>
+                  </div>
+                  <em>+18</em>
+                </article>
+                <article>
+                  <span class="avatar blue">周</span>
+                  <div>
+                    <strong>周同学</strong>
+                    <p>饭后散步 · 可补位</p>
+                  </div>
+                  <em>+12</em>
+                </article>
+                <article>
+                  <span class="avatar coral">林</span>
+                  <div>
+                    <strong>林同学</strong>
+                    <p>复习中 · 需要轻任务</p>
+                  </div>
+                  <button class="text-action" type="button" data-toast="已给林同学发送 8 分钟拉伸任务">助攻</button>
+                </article>
+                <article>
+                  <span class="avatar gold">陈</span>
+                  <div>
+                    <strong>陈同学</strong>
+                    <p>周日接力 · 缺你确认</p>
+                  </div>
+                  <button class="text-action" type="button" data-toast="已确认参加周日寝室接力">确认</button>
+                </article>
               </div>
             </section>
 
-            <section class="panel metrics-panel">
+            <section class="panel challenge-panel">
               <div class="panel-heading compact">
                 <div>
-                  <span class="section-kicker">核心指标</span>
-                  <h3>效果看板</h3>
+                  <span class="section-kicker">小队挑战</span>
+                  <h3>本周差 32 能量封顶</h3>
                 </div>
+                <span class="tag">第 3 名</span>
               </div>
-              <div class="metric-bars">
-                <div>
-                  <span>周运动天数</span>
-                  <strong>+2.1 天</strong>
-                  <div class="bar"><span style="width: 78%"></span></div>
-                </div>
-                <div>
-                  <span>7 日留存</span>
-                  <strong>46%</strong>
-                  <div class="bar"><span style="width: 64%"></span></div>
-                </div>
-                <div>
-                  <span>战队参与率</span>
-                  <strong>71%</strong>
+              <div class="challenge-list">
+                <article>
+                  <div>
+                    <strong>寝室累计 40 公里</strong>
+                    <span>28.5 / 40 公里</span>
+                  </div>
                   <div class="bar"><span style="width: 71%"></span></div>
-                </div>
-                <div>
-                  <span>任务完成率</span>
-                  <strong>62%</strong>
-                  <div class="bar"><span style="width: 62%"></span></div>
-                </div>
+                </article>
+                <article>
+                  <div>
+                    <strong>低活跃队友助攻</strong>
+                    <span>2 / 3 次</span>
+                  </div>
+                  <div class="bar"><span style="width: 66%"></span></div>
+                </article>
+                <article>
+                  <div>
+                    <strong>周日接力报名</strong>
+                    <span>3 / 4 人</span>
+                  </div>
+                  <div class="bar"><span style="width: 75%"></span></div>
+                </article>
               </div>
             </section>
 
-            <section class="panel reward-panel">
+            <section class="panel feed-panel">
               <div class="panel-heading compact">
                 <div>
-                  <span class="section-kicker">激励资源</span>
-                  <h3>校园兑换池</h3>
+                  <span class="section-kicker">战队动态</span>
+                  <h3>刚刚发生</h3>
                 </div>
               </div>
-              <div class="reward-list">
+              <div class="activity-feed">
+                <div><i data-lucide="check-circle-2"></i><span>周同学完成图书馆散步线，战队 +12</span></div>
+                <div><i data-lucide="message-square"></i><span>陈同学约了周日 10:00 寝室接力</span></div>
+                <div><i data-lucide="sparkles"></i><span>全队连续 3 天有人打卡，解锁加成</span></div>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="rewards" aria-labelledby="rewardsTitle">
+          <div class="section-band reward-band">
+            <span class="eyebrow">奖励</span>
+            <h2 id="rewardsTitle">能量币、徽章和本周周报都在这里</h2>
+            <p>完成任务、帮队友、参加接力都会进入同一个账户，能量币和徽章进度会实时更新。</p>
+          </div>
+
+          <div class="rewards-layout">
+            <section class="panel shop-panel">
+              <div class="panel-heading compact">
                 <div>
+                  <span class="section-kicker">校园兑换</span>
+                  <h3>可用 240 能量币</h3>
+                </div>
+              </div>
+              <div class="shop-grid">
+                <article>
                   <i data-lucide="coffee"></i>
-                  <span>咖啡、轻食、校内商户券</span>
-                </div>
-                <div>
+                  <strong>轻食券</strong>
+                  <span>120 能量币</span>
+                  <button type="button" data-toast="已兑换轻食券，记得在有效期内使用">兑换</button>
+                </article>
+                <article>
                   <i data-lucide="dumbbell"></i>
-                  <span>健身房体验课与场馆预约优先权</span>
-                </div>
-                <div>
-                  <i data-lucide="badge-check"></i>
-                  <span>社团认证、班级荣誉和体测训练营名额</span>
-                </div>
+                  <strong>健身房体验课</strong>
+                  <span>200 能量币</span>
+                  <button type="button" data-toast="已预约健身房体验课">预约</button>
+                </article>
+                <article>
+                  <i data-lucide="calendar-check"></i>
+                  <strong>场馆优先预约</strong>
+                  <span>160 能量币</span>
+                  <button type="button" data-toast="已开启下周场馆优先提醒">提醒</button>
+                </article>
               </div>
             </section>
 
-            <section class="panel submit-panel">
+            <section class="panel report-panel">
               <div class="panel-heading compact">
                 <div>
-                  <span class="section-kicker">提交亮点</span>
-                  <h3>作品说明</h3>
+                  <span class="section-kicker">运动周报</span>
+                  <h3>比上周更稳定</h3>
                 </div>
               </div>
-              <p>
-                本原型覆盖题目要求的产品结构、用户痛点、核心功能、社交机制、成就系统和效果评估。
-                页面可直接部署为静态网站，部署后复制访问链接即可提交。
-              </p>
-              <div class="submit-tags">
-                <span>可交互任务</span>
-                <span>社交排行榜</span>
-                <span>成就徽章</span>
-                <span>运营闭环</span>
+              <div class="report-grid">
+                <div><span>运动天数</span><strong>3 天</strong><em>+2 天</em></div>
+                <div><span>总时长</span><strong>86 分钟</strong><em>+41 分钟</em></div>
+                <div><span>战队贡献</span><strong>68</strong><em>第 2</em></div>
+                <div><span>连续记录</span><strong>11 天</strong><em>保持中</em></div>
+              </div>
+            </section>
+
+            <section class="panel collection-panel">
+              <div class="panel-heading compact">
+                <div>
+                  <span class="section-kicker">本周徽章</span>
+                  <h3>还差一步</h3>
+                </div>
+              </div>
+              <div class="collection-list">
+                <article>
+                  <span class="badge-dot"><i data-lucide="moon-star"></i></span>
+                  <div>
+                    <strong>夜跑领航员</strong>
+                    <p>3 / 5 次夜间运动</p>
+                  </div>
+                </article>
+                <article>
+                  <span class="badge-dot gold"><i data-lucide="trophy"></i></span>
+                  <div>
+                    <strong>寝室 MVP</strong>
+                    <p>7 / 10 点队友助攻</p>
+                  </div>
+                </article>
+                <article>
+                  <span class="badge-dot coral"><i data-lucide="flame"></i></span>
+                  <div>
+                    <strong>稳定节拍</strong>
+                    <p>11 / 14 天连续记录</p>
+                  </div>
+                </article>
               </div>
             </section>
           </div>

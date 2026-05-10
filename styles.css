@@ -138,6 +138,12 @@ button {
 .wide-button svg,
 .icon-button svg,
 .insight-card svg,
+.journey-steps svg,
+.route-cards svg,
+.guard-list svg,
+.activity-feed svg,
+.shop-grid svg,
+.badge-dot svg,
 .reward-list svg,
 .module-icon svg {
   width: 19px;
@@ -217,6 +223,12 @@ button {
   background: var(--green-strong);
 }
 
+.primary-action.slim {
+  min-height: 36px;
+  padding: 0 12px;
+  font-size: 0.9rem;
+}
+
 .icon-button {
   display: inline-grid;
   place-items: center;
@@ -238,6 +250,44 @@ button {
 
 .view.active {
   display: block;
+}
+
+.quick-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-bottom: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--line);
+  box-shadow: var(--shadow);
+}
+
+.quick-strip div {
+  min-height: 92px;
+  padding: 16px;
+  background: var(--surface);
+}
+
+.quick-strip span {
+  display: block;
+  color: var(--green);
+  font-size: 0.8rem;
+  font-weight: 900;
+}
+
+.quick-strip strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 1.05rem;
+  line-height: 1.35;
+}
+
+.quick-strip p {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
 }
 
 .hero-band {
@@ -758,10 +808,64 @@ body.dark .reward-chip {
 }
 
 .insight-card p,
+.journey-copy p,
 .module-panel p,
 .module-panel li,
 .submit-panel p {
   color: var(--muted);
+}
+
+.journey-panel {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.65fr) minmax(0, 1.35fr);
+  gap: 18px;
+  align-items: center;
+  margin-top: 18px;
+  padding: 20px;
+}
+
+.journey-copy h3 {
+  margin: 4px 0 8px;
+  font-size: 1.22rem;
+  line-height: 1.28;
+}
+
+.journey-copy p {
+  margin: 0;
+}
+
+.journey-steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.journey-steps div {
+  min-height: 132px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.journey-steps svg {
+  color: var(--green);
+}
+
+.journey-steps strong,
+.journey-steps span {
+  display: block;
+}
+
+.journey-steps strong {
+  margin-top: 10px;
+  line-height: 1.25;
+}
+
+.journey-steps span {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 0.84rem;
 }
 
 .flow-strip {
@@ -837,17 +941,10 @@ body.dark .reward-chip {
   padding-left: 18px;
 }
 
-.growth-band {
+.reward-band {
   background:
     linear-gradient(90deg, rgba(31, 122, 77, 0.1), rgba(241, 184, 66, 0.1)),
     var(--surface);
-}
-
-.growth-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
-  gap: 18px;
-  margin-top: 18px;
 }
 
 .calendar-panel {
@@ -950,6 +1047,314 @@ body.dark .reward-chip {
   font-weight: 900;
 }
 
+.feature-grid,
+.squad-layout,
+.rewards-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(310px, 0.85fr);
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.schedule-panel,
+.squad-room,
+.shop-panel {
+  grid-row: span 2;
+}
+
+.week-planner,
+.route-cards,
+.guard-list,
+.member-list,
+.challenge-list,
+.activity-feed,
+.shop-grid,
+.collection-list {
+  display: grid;
+  gap: 12px;
+  padding: 0 20px 20px;
+}
+
+.week-planner {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.day-card,
+.route-cards article,
+.guard-list div,
+.member-list article,
+.challenge-list article,
+.activity-feed div,
+.shop-grid article,
+.report-grid div,
+.collection-list article {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+}
+
+.day-card {
+  min-height: 132px;
+  padding: 15px;
+}
+
+.day-card.done {
+  border-color: rgba(31, 122, 77, 0.38);
+}
+
+.day-card.active {
+  border-color: var(--coral);
+  box-shadow: 0 0 0 4px rgba(239, 104, 79, 0.1);
+}
+
+.day-card span,
+.route-cards span,
+.guard-list span,
+.member-list p,
+.challenge-list span,
+.shop-grid span,
+.report-grid span,
+.collection-list p {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.day-card strong,
+.route-cards strong,
+.guard-list strong,
+.member-list strong,
+.challenge-list strong,
+.shop-grid strong,
+.collection-list strong {
+  display: block;
+}
+
+.day-card strong {
+  margin-top: 8px;
+  font-size: 1.08rem;
+}
+
+.day-card p,
+.member-list p,
+.collection-list p {
+  margin: 4px 0 0;
+}
+
+.state-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 20px 16px;
+}
+
+.state-chip {
+  min-height: 34px;
+  padding: 0 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 900;
+}
+
+.state-chip.active {
+  background: rgba(31, 122, 77, 0.12);
+  color: var(--green);
+  border-color: rgba(31, 122, 77, 0.3);
+}
+
+.readiness-score {
+  margin: 0 20px 20px;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--surface-strong);
+  border: 1px solid var(--line);
+}
+
+.readiness-score span {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.readiness-score strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--coral);
+  font-size: 2.15rem;
+  line-height: 1;
+}
+
+.readiness-score p {
+  margin: 8px 0 0;
+  color: var(--muted);
+}
+
+.route-cards article,
+.guard-list div,
+.activity-feed div,
+.collection-list article {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  min-height: 66px;
+  padding: 12px;
+}
+
+.route-cards svg,
+.guard-list svg,
+.activity-feed svg {
+  color: var(--green);
+}
+
+.route-cards span {
+  display: block;
+  margin-top: 3px;
+}
+
+.guard-list strong {
+  font-size: 0.95rem;
+}
+
+.member-list article {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-height: 68px;
+  padding: 12px;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #ffffff;
+  font-weight: 900;
+}
+
+.avatar.blue {
+  background: var(--blue);
+}
+
+.avatar.coral {
+  background: var(--coral);
+}
+
+.avatar.gold {
+  background: #a36b09;
+}
+
+.member-list em {
+  color: var(--green);
+  font-style: normal;
+  font-weight: 900;
+}
+
+.text-action,
+.shop-grid button {
+  min-height: 34px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--green);
+  color: #ffffff;
+  font-size: 0.86rem;
+  font-weight: 900;
+}
+
+.challenge-list article {
+  min-height: 92px;
+  padding: 14px;
+}
+
+.challenge-list article > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.activity-feed span {
+  color: var(--text);
+}
+
+.shop-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.shop-grid article {
+  min-height: 176px;
+  padding: 16px;
+}
+
+.shop-grid svg {
+  color: var(--coral);
+}
+
+.shop-grid strong {
+  margin-top: 12px;
+}
+
+.shop-grid span {
+  display: block;
+  margin-top: 4px;
+}
+
+.shop-grid button {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 0 20px 20px;
+}
+
+.report-grid div {
+  min-height: 94px;
+  padding: 14px;
+}
+
+.report-grid strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 1.45rem;
+}
+
+.report-grid em {
+  display: block;
+  margin-top: 4px;
+  color: var(--green);
+  font-style: normal;
+  font-weight: 900;
+}
+
+.badge-dot {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #ffffff;
+}
+
+.badge-dot.gold {
+  background: var(--gold);
+  color: #513600;
+}
+
+.badge-dot.coral {
+  background: var(--coral);
+}
+
 .toast {
   position: fixed;
   right: 22px;
@@ -996,11 +1401,16 @@ body.dark .reward-chip {
   }
 
   .dashboard-grid,
-  .growth-layout {
+  .feature-grid,
+  .squad-layout,
+  .rewards-layout {
     grid-template-columns: 1fr;
   }
 
-  .mission-panel {
+  .mission-panel,
+  .schedule-panel,
+  .squad-room,
+  .shop-panel {
     grid-row: auto;
   }
 }
@@ -1084,8 +1494,19 @@ body.dark .reward-chip {
   .badge-grid,
   .insight-grid,
   .module-grid,
+  .quick-strip,
+  .week-planner,
+  .shop-grid,
   .flow-strip {
     grid-template-columns: 1fr;
+  }
+
+  .journey-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .journey-steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .flow-strip {
@@ -1131,6 +1552,14 @@ body.dark .reward-chip {
   }
 
   .metric-row {
+    grid-template-columns: 1fr;
+  }
+
+  .report-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .journey-steps {
     grid-template-columns: 1fr;
   }
 
