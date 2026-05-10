@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>燃动校园｜游戏化运动激励工具</title>
+    <meta
+      name="description"
+      content="面向大学生的游戏化运动激励工具原型，通过任务、组队、成就和校园奖励提升运动频率。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="主导航">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">燃</div>
+          <div>
+            <strong>燃动校园</strong>
+            <span>GameFit Campus</span>
+          </div>
+        </div>
+
+        <nav class="nav-list">
+          <button class="nav-button active" type="button" data-view="dashboard" title="运动仪表盘">
+            <i data-lucide="layout-dashboard"></i>
+            <span>运动仪表盘</span>
+          </button>
+          <button class="nav-button" type="button" data-view="blueprint" title="产品结构">
+            <i data-lucide="workflow"></i>
+            <span>产品结构</span>
+          </button>
+          <button class="nav-button" type="button" data-view="growth" title="运营评估">
+            <i data-lucide="chart-no-axes-combined"></i>
+            <span>运营评估</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <span>核心目标</span>
+          <strong>把“坚持运动”变成每天都想参与的校园协作游戏。</strong>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <span class="eyebrow">大学生运动激励工具</span>
+            <h1>社交组队 + 成就反馈 + 校园奖励</h1>
+          </div>
+          <div class="topbar-actions">
+            <button class="icon-button" id="themeToggle" type="button" title="切换深浅模式">
+              <i data-lucide="moon"></i>
+            </button>
+            <button class="primary-action" type="button" id="mockSync">
+              <i data-lucide="watch"></i>
+              <span>同步运动</span>
+            </button>
+          </div>
+        </header>
+
+        <section class="view active" id="dashboard" aria-labelledby="dashboardTitle">
+          <div class="hero-band">
+            <img class="hero-image" src="./assets/campus-workout.png" alt="校园操场夜跑与同学运动场景" />
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+              <span class="status-pill">今晚 20:30 · 操场战队局</span>
+              <h2 id="dashboardTitle">今天 28 分钟，替队友点亮一格</h2>
+              <p>把跑步、力量、拉伸拆成轻任务，完成后转化为个人经验、战队能量和可兑换奖励。</p>
+            </div>
+            <div class="hero-stats" aria-label="本周状态">
+              <div>
+                <span>本周完成</span>
+                <strong id="weeklyRate">68%</strong>
+              </div>
+              <div>
+                <span>连续打卡</span>
+                <strong id="streakValue">11 天</strong>
+              </div>
+              <div>
+                <span>战队排名</span>
+                <strong>第 3</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-grid">
+            <section class="panel mission-panel">
+              <div class="panel-heading">
+                <div>
+                  <span class="section-kicker">今日行动</span>
+                  <h3>运动任务</h3>
+                </div>
+                <div class="segmented" role="tablist" aria-label="任务类型">
+                  <button class="segment active" type="button" data-mission-mode="daily">日常</button>
+                  <button class="segment" type="button" data-mission-mode="squad">组队</button>
+                  <button class="segment" type="button" data-mission-mode="exam">考试周</button>
+                </div>
+              </div>
+              <div class="mission-list" id="missionList"></div>
+            </section>
+
+            <section class="panel xp-panel">
+              <div class="panel-heading compact">
+                <div>
+                  <span class="section-kicker">成长反馈</span>
+                  <h3>等级进度</h3>
+                </div>
+                <span class="level-chip" id="levelChip">Lv. 7</span>
+              </div>
+              <div class="ring-wrap" aria-label="等级经验进度">
+                <div class="progress-ring" id="xpRing">
+                  <strong id="xpPercent">74%</strong>
+                  <span>本级经验</span>
+                </div>
+              </div>
+              <div class="metric-row">
+                <div>
+                  <span>经验值</span>
+                  <strong id="xpValue">1260</strong>
+                </div>
+                <div>
+                  <span>能量币</span>
+                  <strong id="coinValue">240</strong>
+                </div>
+              </div>
+              <button class="wide-button" type="button" id="redeemReward">
+                <i data-lucide="ticket-check"></i>
+                <span>兑换校园奖励</span>
+              </button>
+            </section>
+
+            <section class="panel team-panel">
+              <div class="panel-heading compact">
+                <div>
+                  <span class="section-kicker">社交驱动</span>
+                  <h3>寝室战队</h3>
+                </div>
+                <button class="icon-button small" type="button" title="邀请队友" id="inviteTeam">
+                  <i data-lucide="user-plus"></i>
+                </button>
+              </div>
+              <div class="team-energy">
+                <span>今日战队能量</span>
+                <div class="energy-track">
+                  <div id="teamEnergyBar"></div>
+                </div>
+                <strong id="teamEnergyText">68 / 100</strong>
+              </div>
+              <div class="leaderboard" id="leaderboard"></div>
+            </section>
+
+            <section class="panel route-panel">
+              <div class="panel-heading compact">
+                <div>
+                  <span class="section-kicker">长期坚持</span>
+                  <h3>七日挑战地图</h3>
+                </div>
+                <span class="tag">操场环线</span>
+              </div>
+              <div class="route-map" aria-label="七日挑战进度">
+                <div class="route-line"></div>
+                <button class="route-node done" type="button" title="周一已完成">一</button>
+                <button class="route-node done" type="button" title="周二已完成">二</button>
+                <button class="route-node active" type="button" title="周三进行中">三</button>
+                <button class="route-node" type="button" title="周四待完成">四</button>
+                <button class="route-node" type="button" title="周五待完成">五</button>
+                <button class="route-node" type="button" title="周六待完成">六</button>
+                <button class="route-node" type="button" title="周日待完成">日</button>
+              </div>
+              <div class="route-summary">
+                <strong>完成 5 天解锁“夜跑领航员”徽章</strong>
+                <span>好友补位、轻量任务和补签券降低中断挫败感。</span>
+              </div>
+            </section>
+
+            <section class="panel badge-panel">
+              <div class="panel-heading compact">
+                <div>
+                  <span class="section-kicker">成就系统</span>
+                  <h3>徽章墙</h3>
+                </div>
+                <span class="tag">12 枚可解锁</span>
+              </div>
+              <div class="badge-grid" id="badgeGrid"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="blueprint" aria-labelledby="blueprintTitle">
+          <div class="section-band">
+            <span class="eyebrow">产品定位</span>
+            <h2 id="blueprintTitle">面向大学生日常运动的轻游戏化激励平台</h2>
+            <p>
+              以“低门槛运动任务”为入口，把个人计划、同伴监督、战队协作和成就收藏连接起来，
+              让用户在碎片时间里获得可见反馈，并通过集体目标减少放弃成本。
+            </p>
+          </div>
+
+          <div class="insight-grid">
+            <article class="panel insight-card">
+              <i data-lucide="battery-low"></i>
+              <h3>动力不稳定</h3>
+              <p>课程、社团和考试挤压时间，长计划一旦中断容易直接放弃。</p>
+            </article>
+            <article class="panel insight-card">
+              <i data-lucide="message-circle-off"></i>
+              <h3>缺少即时反馈</h3>
+              <p>单次运动收益不明显，用户需要更快看到进步、认可和奖励。</p>
+            </article>
+            <article class="panel insight-card">
+              <i data-lucide="users-round"></i>
+              <h3>同伴难以组织</h3>
+              <p>约运动成本高，寝室和班级关系没有被转化为持续激励。</p>
+            </article>
+          </div>
+
+          <div class="flow-strip" aria-label="核心产品闭环">
+            <div>
+              <span>01</span>
+              <strong>设定目标</strong>
+              <p>体测、减压、塑形、作息恢复</p>
+            </div>
+            <div>
+              <span>02</span>
+              <strong>生成任务</strong>
+              <p>10 到 30 分钟轻量运动包</p>
+            </div>
+            <div>
+              <span>03</span>
+              <strong>可信打卡</strong>
+              <p>步数、GPS、设备数据组合验证</p>
+            </div>
+            <div>
+              <span>04</span>
+              <strong>社交助推</strong>
+              <p>寝室战队、好友补位、班级挑战</p>
+            </div>
+            <div>
+              <span>05</span>
+              <strong>成就兑换</strong>
+              <p>徽章、称号、校园权益和复盘</p>
+            </div>
+          </div>
+
+          <div class="module-grid">
+            <section class="panel module-panel">
+              <div class="module-icon"><i data-lucide="clipboard-list"></i></div>
+              <h3>智能计划</h3>
+              <p>根据课表空档、运动基础和体测目标，自动生成“最低可完成版本”。</p>
+              <ul>
+                <li>新手保护：前 7 天只推低强度任务</li>
+                <li>考试周模式：拉伸、散步、睡前放松优先</li>
+                <li>失败修复：中断后回到较小任务，不清零成就</li>
+              </ul>
+            </section>
+            <section class="panel module-panel">
+              <div class="module-icon accent"><i data-lucide="swords"></i></div>
+              <h3>校园挑战</h3>
+              <p>把操场、图书馆、食堂等校园地点转化为可解锁挑战地图。</p>
+              <ul>
+                <li>个人挑战：连续夜跑、晨间拉伸、力量入门</li>
+                <li>战队挑战：寝室累计公里数、班级积分赛</li>
+                <li>限时活动：体测月、社团联赛、毕业季路线</li>
+              </ul>
+            </section>
+            <section class="panel module-panel">
+              <div class="module-icon warm"><i data-lucide="medal"></i></div>
+              <h3>成就收藏</h3>
+              <p>把抽象的健康收益变成可展示、可收集、可分享的成长记录。</p>
+              <ul>
+                <li>徽章：首跑、破纪录、稳定打卡、队友助攻</li>
+                <li>称号：夜跑领航员、复盘达人、寝室 MVP</li>
+                <li>展示：个人主页、战队墙、活动榜单</li>
+              </ul>
+            </section>
+            <section class="panel module-panel">
+              <div class="module-icon cool"><i data-lucide="shield-check"></i></div>
+              <h3>信任与隐私</h3>
+              <p>强调可信记录和可控展示，避免过度社交压力。</p>
+              <ul>
+                <li>好友仅默认看到摘要，不展示精确路线</li>
+                <li>打卡异常时提示复核，不直接公开惩罚</li>
+                <li>支持低调模式，只参与战队贡献不进公开榜</li>
+              </ul>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="growth" aria-labelledby="growthTitle">
+          <div class="section-band growth-band">
+            <span class="eyebrow">运营与评估</span>
+            <h2 id="growthTitle">用校园关系链提高运动频率，用数据复盘验证留存</h2>
+            <p>
+              设计重点不是让用户一次练很猛，而是让更多同学每周多运动 2 到 3 次，并愿意持续回到战队。
+            </p>
+          </div>
+
+          <div class="growth-layout">
+            <section class="panel calendar-panel">
+              <div class="panel-heading compact">
+                <div>
+                  <span class="section-kicker">活动节奏</span>
+                  <h3>四周冷启动</h3>
+                </div>
+              </div>
+              <div class="timeline">
+                <div>
+                  <span>第 1 周</span>
+                  <strong>寝室建队</strong>
+                  <p>辅导员、社团、体育课入口引导组队。</p>
+                </div>
+                <div>
+                  <span>第 2 周</span>
+                  <strong>操场地图</strong>
+                  <p>推出低门槛七日地图，降低首次参与难度。</p>
+                </div>
+                <div>
+                  <span>第 3 周</span>
+                  <strong>班级联赛</strong>
+                  <p>按人均活跃天数排名，避免大队伍天然优势。</p>
+                </div>
+                <div>
+                  <span>第 4 周</span>
+                  <strong>奖励复盘</strong>
+                  <p>发放校园权益，展示个人变化和战队贡献。</p>
+                </div>
+              </div>
+            </section>
+
+            <section class="panel metrics-panel">
+              <div class="panel-heading compact">
+                <div>
+                  <span class="section-kicker">核心指标</span>
+                  <h3>效果看板</h3>
+                </div>
+              </div>
+              <div class="metric-bars">
+                <div>
+                  <span>周运动天数</span>
+                  <strong>+2.1 天</strong>
+                  <div class="bar"><span style="width: 78%"></span></div>
+                </div>
+                <div>
+                  <span>7 日留存</span>
+                  <strong>46%</strong>
+                  <div class="bar"><span style="width: 64%"></span></div>
+                </div>
+                <div>
+                  <span>战队参与率</span>
+                  <strong>71%</strong>
+                  <div class="bar"><span style="width: 71%"></span></div>
+                </div>
+                <div>
+                  <span>任务完成率</span>
+                  <strong>62%</strong>
+                  <div class="bar"><span style="width: 62%"></span></div>
+                </div>
+              </div>
+            </section>
+
+            <section class="panel reward-panel">
+              <div class="panel-heading compact">
+                <div>
+                  <span class="section-kicker">激励资源</span>
+                  <h3>校园兑换池</h3>
+                </div>
+              </div>
+              <div class="reward-list">
+                <div>
+                  <i data-lucide="coffee"></i>
+                  <span>咖啡、轻食、校内商户券</span>
+                </div>
+                <div>
+                  <i data-lucide="dumbbell"></i>
+                  <span>健身房体验课与场馆预约优先权</span>
+                </div>
+                <div>
+                  <i data-lucide="badge-check"></i>
+                  <span>社团认证、班级荣誉和体测训练营名额</span>
+                </div>
+              </div>
+            </section>
+
+            <section class="panel submit-panel">
+              <div class="panel-heading compact">
+                <div>
+                  <span class="section-kicker">提交亮点</span>
+                  <h3>作品说明</h3>
+                </div>
+              </div>
+              <p>
+                本原型覆盖题目要求的产品结构、用户痛点、核心功能、社交机制、成就系统和效果评估。
+                页面可直接部署为静态网站，部署后复制访问链接即可提交。
+              </p>
+              <div class="submit-tags">
+                <span>可交互任务</span>
+                <span>社交排行榜</span>
+                <span>成就徽章</span>
+                <span>运营闭环</span>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
